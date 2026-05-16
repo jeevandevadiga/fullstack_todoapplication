@@ -21,13 +21,13 @@ const userdetails = async (req, res) => {
     //creating the json token
     const token = jwt.sign(
       { id: data._id, email: data.email },
-       process.env.JWT,
-       { expiresIn: "1d" }
+      "7633cc63c8724b4b2bb8617e777fa29fc96202cda8c3010ce680aefb68c1fcb5",
+      { expiresIn: "1d" },
     );
     res.cookie("usertoken", token);
     res.status(200).json({ message: "done", username, email });
   } catch (error) {
-    res.status(400).json({ message: "failed in userlogin page", error });
+    res.status(400).json({ message: "failed in userlogin page", error:error.message });
   }
 };
 

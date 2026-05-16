@@ -6,6 +6,10 @@ const userdetails = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
+    if (!username || !email || !password) {
+      return res.status(401).json({ message: "fill all the values " });
+    }
+
     //first thing is to hash the password
     const salttime = 10;
     const newpass = await bcrypt.hash(password, salttime);
@@ -27,7 +31,9 @@ const userdetails = async (req, res) => {
     res.cookie("usertoken", token);
     res.status(200).json({ message: "done", username, email });
   } catch (error) {
-    res.status(400).json({ message: "failed in userlogin page", error:error.message });
+    res
+      .status(400)
+      .json({ message: "failed in userlogin page", error: error.message });
   }
 };
 

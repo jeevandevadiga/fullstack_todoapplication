@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import taskmodel from "../../models/user.list.js";
 async function addtask(req, res) {
   try {
-    const { task, time } = req.body;
+    const { task, time,status } = req.body;
 
     //checking if the data are not empty
 
@@ -23,7 +23,7 @@ async function addtask(req, res) {
       task,
       email: email,
       time,
-      status: "pending",
+      status
     });
 
     res.status(200).json({ message: "added successfully", list });

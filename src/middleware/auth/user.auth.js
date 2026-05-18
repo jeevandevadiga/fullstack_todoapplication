@@ -16,19 +16,17 @@ async function checkauth(req, res, next) {
       "7633cc63c8724b4b2bb8617e777fa29fc96202cda8c3010ce680aefb68c1fcb5",
     );
 
-    if(!decoded || !decoded.email){
-      return res.status(401).json({message:"invalid token"});
+    if (!decoded || !decoded.email) {
+      return res.status(401).json({ message: "invalid token" });
     }
 
     req.user = decoded;
     next();
   } catch (error) {
-    res
-      .status(401)
-      .json({
-        message: "problem in the authentification page",
-        error: error.message,
-      });
+    res.status(401).json({
+      message: "problem in the authentification page",
+      error: error.message,
+    });
   }
 }
 

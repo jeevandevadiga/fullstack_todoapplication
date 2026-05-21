@@ -28,7 +28,12 @@ const userdetails = async (req, res) => {
       "7633cc63c8724b4b2bb8617e777fa29fc96202cda8c3010ce680aefb68c1fcb5",
       { expiresIn: "1d" },
     );
-    res.cookie("usertoken", token);
+    res.cookie("usertoken", token, {
+      httpOnly: true,
+      secure: false,
+      samesight:"none",
+      maxAge: 60 * 60 * 1000,
+    });
     res.status(200).json({ message: "done", username, email });
   } catch (error) {
     res

@@ -35,7 +35,12 @@ async function checklogin(req, res) {
       { expiresIn: "1d" },
     );
 
-    res.cookie("usertoken", token);
+    res.cookie("usertoken", token, {
+      httpOnly: true,
+      secure:false,
+      samesight: "none",
+      maxAge: 60 * 60 * 1000,
+    });
 
     res
       .status(200)
@@ -46,6 +51,5 @@ async function checklogin(req, res) {
       .json({ message: "failed in the login page", error: error.message });
   }
 }
-
 
 export default checklogin;

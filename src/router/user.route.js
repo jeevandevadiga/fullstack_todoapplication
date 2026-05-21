@@ -5,11 +5,13 @@ import getusertask from "../controller/user/get.usertask.js";
 import getpendingtask from '../controller/user/pending.task.js'
 import getcompletedtask from '../controller/user/get.finishedtask.js'
 import deletealltask from '../controller/user/deleteall.task.js'
+import validationresult from '../middleware/validation/validation.result.js'
+import taskvalidation from '../middleware/validationrules/task.validation.js'
 
 const userrouter = express.Router();
 
 //api to add the tasks into the database
-userrouter.post("/savelist", checkauth, addtask);
+userrouter.post("/savelist", checkauth,taskvalidation , validationresult, addtask);
 
 //api to fetch all the data from the database (current user )
 userrouter.get("/gettask", checkauth, getusertask);

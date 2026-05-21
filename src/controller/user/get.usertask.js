@@ -4,7 +4,7 @@ async function getusertask(req, res) {
   try {
     const email = req.user.email;
 
-    const data = await taskmodel.find({ email });
+    const data = await taskmodel.find({ email }).sort({createdAt: -1});
 
     if (data.length == 0) {
       return res.status(200).json({ message: "no task created yet" });

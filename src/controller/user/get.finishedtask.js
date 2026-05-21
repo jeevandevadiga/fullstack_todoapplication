@@ -10,7 +10,7 @@ async function getcompletedtask(req, res) {
       return res.status(200).json({ message: "no completed task" });
     }
 
-    res.status(200).json({ message: "unfinished tasks are ", data });
+    res.status(200).json({ message: "finished tasks are ", data });
   } catch (error) {
     res.status(401).json({
       message: "error in the getpending task page ",
